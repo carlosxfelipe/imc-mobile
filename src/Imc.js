@@ -46,11 +46,23 @@ const Imc = () => {
         <Title>Calculadora de IMC</Title>
 
         <Label>Peso</Label>
-        <TextInput value={peso} onChangeText={text => setPeso(text)} />
+        <TextInput
+          placeholder="kg"
+          value={peso}
+          onChangeText={text => setPeso(text)}
+        />
 
         <Label>Altura</Label>
-        <TextInput value={altura} onChangeText={text => setAltura(text)} />
-        <Button onPress={() => calcular()} title="Calcular" />
+        <TextInput
+          placeholder="metros"
+          value={altura}
+          onChangeText={text => setAltura(text.replace(',', '.'))}
+        />
+        <Button
+          disabled={altura === '' || peso === ''}
+          onPress={() => calcular()}
+          title="Calcular"
+        />
         {imc && (
           <OutputLabel>
             {'O seu IMC é '}
